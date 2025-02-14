@@ -54,8 +54,8 @@ fun LoginScreen(
     navController: NavController,
     loginViewModel: LoginViewModel = viewModel(factory = LoginViewModelFactoryInstance())
 ) {
-    var email by remember { mutableStateOf("info@koalit.dev") }
-    var password by remember { mutableStateOf("koalit123") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     var rememberSession by remember { mutableStateOf(false) }
     var passwordVisible by remember { mutableStateOf(false) }
 
