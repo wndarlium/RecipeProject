@@ -62,11 +62,12 @@ fun AddRecipeScreen(
     val context = LocalContext.current
     val recipes by recipeViewModel.recipes.collectAsState(initial = emptyList())
 
-    var title by remember { mutableStateOf("Pie de manzana") }
-    var description by remember { mutableStateOf("Una receta deliciosa con manzanas y canela") }
-    var prepTime by remember { mutableStateOf("15") }
+    var title by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var prepTime by remember { mutableStateOf("") }
     var isFavorite by remember { mutableStateOf(false) }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
+    var preparation by remember { mutableStateOf("") }
 
     val ingredients = remember { mutableStateListOf<Ingredient>() }
     fun updateIngredient(index: Int, ingredient: Ingredient) {
@@ -144,6 +145,14 @@ fun AddRecipeScreen(
                 shape = RoundedCornerShape(8.dp),
                 isError = prepTime.toIntOrNull() == null || prepTime.toIntOrNull()!! <= 0
             )
+            OutlinedTextField(
+                value = preparation,
+                onValueChange = { preparation = it },
+                label = { Text("Preparación") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                isError = preparation.isBlank()
+            )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
@@ -208,6 +217,7 @@ fun AddRecipeScreen(
                                 title = title,
                                 description = description,
                                 preparationTime = time,
+                                preparation = preparation,
                                 isFavorite = isFavorite,
                                 imageUri = imageUri?.toString(),
                                 ingredients = ingredients.toList()

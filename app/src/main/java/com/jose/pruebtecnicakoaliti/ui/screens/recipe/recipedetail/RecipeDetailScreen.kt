@@ -213,6 +213,12 @@ fun RecipeDetailScreen(
                     Text("Marcar como favorita")
                 }
                  */
+                Text(
+                    text = "Preparación: ${rec.preparation}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
